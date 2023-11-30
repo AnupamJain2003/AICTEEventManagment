@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --body-color:#e4e9f7;
+    --sidebar-color:#FFF;
+    --primary-color:#895CFE;
+    --primary-color-light:#F6F5FF;
+    --toggle-color:#DDD;
+    --text-color:#707070;
+
+    --tran-02:all 0.2s ease;
+    --tran-03:all 0.3s ease;
+    --tran-04:all 0.4s ease;
+    --tran-05:all 0.5s ease;
+}
+
+body{
+    height: 100vh;
+    background: var(--body-color);
+}
+/*====Reusable CSS====*/
+
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500    ;
+}
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+}
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+}
+
+.sidebar li{
+    height: 50px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+}
+.sidebar li .icon{
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+}
+.sidebar li .icon,.sidebar li .text{
+    color: var(--text-color);
+}
+.sidebar a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: var(--tran-04);
+
+}
+.sidebar li a:hover{
+    background: var(--primary-color);
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--sidebar-color);
+}
+.sidebar li a:hover{
+    background: var(--primary-color);
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--sidebar-color);
+}
+.sidebar .menu-bar{
+ 
+ height: calc(100% - 35px);
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+}
+
+.create{
+    margin-left: 250px;
+    height: 100%;
+    background-color: var(--sidebar-color);
+      
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+}
+
+.create  h1 {
+    text-align: center;
+}
+.create  form {
+    display: flex;
+    flex-direction: column;
+}
+.create   label {
+    margin-top: 10px;
+}
+.create input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid var(--text-color);
+            border-radius: 5px;
+        }
+.create input[type="submit"] {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.create input[type="submit"]:hover {
+    background-color: var(--primary-color-light);
+}
+.event{
+    margin-left: 260px;
+    margin-top: 20px;
+    display: flex;   
+    }
+
+.event .event-list {
+        background-color: var(--sidebar-color);
+        width: 40%;
+        border: 1px solid var(--text-color);
+        border-radius: 15px; 
+        padding: 20px;
+        box-sizing: border-box;
+        margin-right: 10px;
+       
+    }
+    .event-card {
+        margin: 10px 0;
+        cursor: pointer;
+        transition: background-color var(--tran-03);
+        background-color: var(--primary-color-light);
+        border: 1px solid var(--primary-color);
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .event-card:hover {
+        background-color: var(--primary-color);
+    }
+
+    .event-card h2 {
+        font-size: 1.2rem;
+        color: var(--primary-color);
+    }
+
+    .event-card p {
+        font-size: 1rem;
+        color: var(--text-color);
+    }
+
+    .event-details {
+        background-color: #fff;
+        width: 60%;
+       
+        border: 1px solid var(--text-color);
+            border-radius: 15px; 
+        padding: 20px;
+    }
+
+    .event-details h1 {
+        font-size: 1.5rem;
+    }
+
+    .event-details h2 {
+        font-size: 1.2rem;
+        margin-top: 10px;
+        color: var(--primary-color);
+    }
+
+    .event-details p {
+        font-size: 1rem;
+        color: var(--text-color);
+    }
+
+    .venue{
+        margin-left: 260px;
+        margin-top: 20px;
+        display: flex;   
+        }
+        .venue-list {
+            flex: 1;
+           /* Gradient background to span to the end of the screen */
+            padding: 20px;
+        }
+
+        .venue-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .venue-card:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .venue-title {
+            font-size: 1.2rem;
+        }
+
+        .venue-subtitle {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        .venue-details {
+            flex: 1;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .divider {
+            background-color: var(--divider-color);
+            width: 1px;
+            height: 100%;
+        }
+.student{
+    margin-left: 260px;
+    margin-top: 20px;
+    display: flex;  
+    background-color: #fff;
+}
+
+.student-details {
+    flex: 1;
+    padding: 20px;
+}
+
+.student-details table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.student-details th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.student-details th {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.home{
+    margin-left: 250px;
+    display: flex; 
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+.header {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.section {
+    width: 23%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    font-size: 1.5rem;
+}
+
+.stats {
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+/* Add this to your existing styles.css file */
+.popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 15px;
+    z-index: 1;
+  }
+  
+  .popup input {
+    margin-bottom: 10px;
+  }
+  
+  .popup .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+
+.custom-button {
+    background-color: var(--primary-color); /* Replace with your custom color */
+    color: #fff; /* Text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 8px; /* Adjust the border-radius for rounded edges */
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Hover effect */
+.custom-button:hover {
+    background-color: var(--primary-color); /* Change color on hover */
+}
+
+.homeheader {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.welcome-message {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.event-management-details {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.ai-content-details {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}

@@ -1,0 +1,267 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <div class="text header-text">
+                    <span class="name">AICTE</span>
+                    <span class="subheading">EVENT MANAGMENT</span>
+                </div>
+            </div>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                
+                <ul class="menu-links">
+                    <li class="nav-links">
+                        <a onclick="showContent('home-content')" href="#">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a onclick="showContent('create-content')" href="#">
+                            <i class='bx bxs-add-to-queue icon'></i>
+                            <span class="text nav-text">Create </span>
+                        </a>
+                    </li>
+                    <li class="nav-links" id='eventsButton'>
+                        <a onclick="showContent('event-content')" href="#">
+                            <i class='bx bx-calendar-event icon' ></i>
+                            <span class="text nav-text">Events</span>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a onclick="showContent('venueadd-content')" href="#">
+                            <i class='bx bx-image-add icon'></i>
+                            <span class="text nav-text">Add Venue </span>
+                        </a>
+                    </li>
+                    <li class="nav-links" id='venueButton'>
+                        <a onclick="showContent('venue-content')" href="#">
+                            <i class='bx bx-building-house icon' ></i>
+                            <span class="text nav-text">Venues</span>
+                        </a>
+                    </li>
+                    {% comment %} <li class="nav-links">
+                        <a onclick="showContent('student-content')" href="#">
+                            <i class='bx bxs-data icon' ></i>
+                            <span class="text nav-text">Students</span>
+                        </a>
+                    </li> {% endcomment %}
+                    {% comment %} <li class="nav-links">
+                        <a onclick="showContent('feedback-content')" href="#">
+                            <i class='bx bxs-chat icon' ></i>
+                            <span class="text nav-text">Feedback</span>
+                        </a>
+                    </li> {% endcomment %}
+                    <li onclick="showContent('Media-content')" class="nav-links">
+                        <a href="#">
+                            <i class='bx bxl-instagram icon' ></i>
+                            <span class="text nav-text">Media</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="nav-links">
+                    <a href="#">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Log Out</span>
+                    </a>
+                </li>
+               
+            </div>
+        </div>
+    </nav>
+    <div class="content home" id="home-content">
+        <header class="homeheader ">
+            <h1>Welcome to Event Management</h1>
+        </header>
+        <section>
+            <div class="welcome-message">
+                <p>Hello, dear user! We're excited to have you on board for our event management platform.</p>
+            </div>
+
+            <div class="event-management-details">
+                <h2>Event Management Details</h2>
+                <p>
+                    Our platform allows you to create and manage events effortlessly. Whether you are hosting
+                    a conference, seminar, or any other gathering, we've got you covered. Explore the features
+                    and make your event a grand success!
+                </p>
+            </div>
+
+            <div class="ai-content-details">
+                <h2>AI-Generated Content</h2>
+                <p>
+                    Discover the power of AI-generated content tailored for your events. Our platform uses advanced
+                    AI models to generate engaging content based on your event details. Experience the magic of AI
+                    in event management like never before!
+                </p>
+            </div>
+        </section>
+       
+        
+    </div>
+    <div class="content create"  id="create-content">
+        <h3>Create Event</h3>
+         <form action="#" method="post">
+            {% csrf_token %}
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" placeholder="Enter Event Name" required>
+
+            <label for="host">Host:</label>
+            <input type="text" id="host" name="host" placeholder="Enter Host Name" required>
+
+            <label for="eventDate">Event Date:</label>
+            <input type="date" id="eventDate" name="eventDate" placeholder="Enter Event Date" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" placeholder="Enter Event Description" required></textarea>
+
+            <label for="numStudents">Number of Students:</label>
+            <input type="text" id="numStudents" name="numStudents" placeholder="Enter Number of Students" required>
+
+            <input type="submit" value="Register">
+            
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+    <div class="content " id="event-content" method="get">
+       
+        <div class="event">
+            <div class="event-list">
+                <h1>Events</h1>
+                {% for eventOb in all_details %}
+                <div class="event-card" id="eventCard{{ eventOb.id }}" data-event-id="{{ eventOb.id }}">
+                    <h2>Name: {{ eventOb.name }}</h2>
+                    <p>Date: {{ eventOb.date }}</p>
+                    <p>Host: {{ eventOb.host }}</p>
+                </div>
+                {% endfor %}
+                <!-- Add more event cards as needed -->
+            </div>
+            
+            <div class="event-details">
+                <h1>Event Details</h1>
+                <h2 class="eventName">Event Name:{{event_details.name}}</h2>
+                <p class="eventDate">Date:{{event_details.date}} </p>
+                <p class="eventDescription">Description: {{event_details.description}}</p>
+                <p class="eventHost">Host:{{event_details.host}} </p>
+                <p class="eventStudents">Number of Students:{{event_details.num_of_students}} </p>
+            </div>
+            
+    </div>
+    </div>
+    <div class="content" id="venue-content" method='get'>
+        <div class="venue">
+        <div class="venue-list">
+            <h1>Venues</h1>
+            {%for venueOb in venue_details%}
+            <div class="venue-card" id="venue-card{{venueOb.id}}" data-venue-id="{{venueOb.id}}">
+                <div class="venue-title">{{venueOb.name}}</div>
+                <div class="venue-subtitle">Status:{{venueOb.status}}</div>
+            </div>
+            {%endfor%}
+            <!-- Add more venue cards as needed -->
+        </div>
+        <div class="divider"></div>
+        <div class="venue-details">
+            <h1>Venue Details</h1>
+            <h2 id="venue-Name">Venue Name</h2>
+            <p id="venueStatus">Status: </p>
+            <p id="venueBookingDate">Booking Date: </p>
+            <p id="venueTotalCapacity">Total Capacity: </p>
+            <p id="venueEvent">Event: </p>
+        </div>
+        </div>
+    </div>
+    <div class="content create"  id="venueadd-content">
+        <h3>Create Venue</h3>
+         <form action="#" method="post">
+            {% csrf_token %}
+            <label for="venueName">Venue Name:</label>
+            <input type="text" id="venueName" name="venueName" placeholder="Enter Venue Name" required>
+
+            <label for="status">Status:</label>
+            <input type="text" id="status" name="status" placeholder="Enter Booking Status" required>
+
+            <label for="bookingDate">Booking Date:</label>
+            <input type="date" id="bookingDate" name="bookingDate" placeholder="Enter booking date" required>
+
+            <label for="totalcapacity">Capacity</label>
+            <input type="text" id="totalcapacity" name="totalcapacity" placeholder="Enter total capacity of the venue" required>
+
+            <label for="eventNa">Event Name</label>
+            <input type="text" id="eventNa" name="eventNa" placeholder="Enter the event name" required>
+
+            <input type="submit" value="Register">
+            
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+
+        
+    </div>
+    <div class="content create" id="feedback-content">
+        <h3>Feed Back Form</h3>
+        <form action="#" method="post">
+            {% csrf_token %}
+           <label for="eventName">Event Name:</label>
+           <input type="text" id="event-Name" name="eventName1" placeholder="Enter Event Name" required>
+           <label for="eventName">Name of Student:</label>
+           <input type="text" id="StudentName" name="studentName1" placeholder="Enter Event Name" required>
+
+           <label for="eventDate">Event Date:</label>
+           <input type="date" id="event-Date" name="eventDate1" placeholder="Enter Event Date" required>
+
+           <label for="description">Description:</label>
+           <textarea id="description1" name="description1" rows="4" placeholder="Enter Event Description" required></textarea>
+
+          
+           <input type="submit" value="Submit">
+       </form>
+    </div>
+    <div class="content create" id="Media-content" method="get">
+        {% csrf_token %}
+        <div class='aiCard'>
+        <h1>Media</h1>
+        <label for="aiId">Enter Event ID:</label>
+        <input type="Number" id="aiId" placeholder="Event ID" required>
+        <button class="custom-button" onclick=AiGenerator()>Get Details</button>
+        </div> 
+        <div id="aiGeneratedContent"> AI Generated content</div>         
+        </div>
+    
+    <!-- Button to trigger AI content generation -->
+  
+    </div>
+  
+
+    <script src="{% static 'scripts.js'%}" ></script>
+    
+</body>
+</html>
